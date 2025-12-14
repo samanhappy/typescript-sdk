@@ -38,6 +38,27 @@ Runnable example:
 
 - [`streamableHttpWithSseFallbackClient.ts`](../src/examples/client/streamableHttpWithSseFallbackClient.ts)
 
+## HTTP/HTTPS Proxy Configuration
+
+For environments that require HTTP/HTTPS proxies, the SDK provides proxy configuration support:
+
+```typescript
+import { createFetchWithProxy, getProxyConfigFromEnv } from '@modelcontextprotocol/sdk/client/proxy';
+
+const transport = new StreamableHTTPClientTransport(
+  new URL('https://mcp-server.example.com'),
+  {
+    fetch: createFetchWithProxy(getProxyConfigFromEnv())
+  }
+);
+```
+
+See [proxy.md](proxy.md) for detailed proxy configuration guide.
+
+Example:
+
+- [`proxyClient.ts`](../src/examples/client/proxyClient.ts)
+
 ## OAuth client authentication helpers
 
 For OAuth-secured MCP servers, the client `auth` module exposes:

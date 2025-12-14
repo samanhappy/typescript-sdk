@@ -104,6 +104,7 @@ Runnable clients live under `src/examples/client` and are described in [docs/cli
 - Interactive Streamable HTTP client ([`simpleStreamableHttp.ts`](src/examples/client/simpleStreamableHttp.ts))
 - Streamable HTTP client with SSE fallback ([`streamableHttpWithSseFallbackClient.ts`](src/examples/client/streamableHttpWithSseFallbackClient.ts))
 - OAuth-enabled clients and polling/parallel examples
+- HTTP/HTTPS proxy configuration ([`proxyClient.ts`](src/examples/client/proxyClient.ts), [docs](docs/proxy.md))
 
 ### Node.js Web Crypto (globalThis.crypto) compatibility
 
