@@ -78,10 +78,10 @@ export interface ProxyConfig {
  * Creates a fetch function that uses the specified proxy configuration.
  *
  * This function returns a fetch implementation that routes requests through
- * the configured HTTP/HTTPS proxies using Node.js http/https agents.
+ * the configured HTTP/HTTPS proxies using undici's ProxyAgent.
  *
- * Note: This function requires the 'undici' package or Node.js 18+ with
- * native fetch support that accepts custom agents via dispatcher option.
+ * Note: This function requires the 'undici' package to be installed.
+ * Install it with: npm install undici
  *
  * @param config - Proxy configuration options
  * @returns A fetch-compatible function configured to use the specified proxies
@@ -139,8 +139,7 @@ export function createFetchWithProxy(config: ProxyConfig): FetchLike {
                 dispatcher
             });
         } catch (error) {
-            // undici not available, try using Node.js built-in http/https agents
-            // Note: This is less ideal as Node.js fetch doesn't directly support agents
+            // undici not available - throw error requiring installation
             throw new Error(
                 'Proxy support requires the "undici" package. ' +
                     'Install it with: npm install undici\n' +
