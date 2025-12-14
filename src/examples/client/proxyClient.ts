@@ -58,6 +58,8 @@ async function main() {
     // Example 3: Proxy with authentication
     console.log('Example 3: Proxy with authentication');
     console.log('-------------------------------------');
+    // This is just for demonstration - showing the format, not actually using it
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const authProxyConfig = {
         httpProxy: 'http://username:password@proxy.example.com:8080',
         httpsProxy: 'https://username:password@proxy.example.com:8443'

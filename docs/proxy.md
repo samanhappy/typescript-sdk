@@ -30,12 +30,9 @@ import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/
 import { createFetchWithProxy, getProxyConfigFromEnv } from '@modelcontextprotocol/sdk/client/proxy';
 
 // Create transport with proxy from environment variables
-const transport = new StreamableHTTPClientTransport(
-  new URL('https://mcp-server.example.com'),
-  {
+const transport = new StreamableHTTPClientTransport(new URL('https://mcp-server.example.com'), {
     fetch: createFetchWithProxy(getProxyConfigFromEnv())
-  }
-);
+});
 
 const client = new Client({ name: 'my-client', version: '1.0.0' });
 await client.connect(transport);
@@ -57,16 +54,13 @@ You can also configure proxies directly in code:
 ```typescript
 import { createFetchWithProxy } from '@modelcontextprotocol/sdk/client/proxy';
 
-const transport = new StreamableHTTPClientTransport(
-  new URL('https://mcp-server.example.com'),
-  {
+const transport = new StreamableHTTPClientTransport(new URL('https://mcp-server.example.com'), {
     fetch: createFetchWithProxy({
-      httpProxy: 'http://proxy.example.com:8080',
-      httpsProxy: 'https://proxy.example.com:8443',
-      noProxy: 'localhost,127.0.0.1,.internal'
+        httpProxy: 'http://proxy.example.com:8080',
+        httpsProxy: 'https://proxy.example.com:8443',
+        noProxy: 'localhost,127.0.0.1,.internal'
     })
-  }
-);
+});
 ```
 
 ## Proxy Authentication
@@ -74,15 +68,12 @@ const transport = new StreamableHTTPClientTransport(
 Proxies that require authentication can include credentials in the URL:
 
 ```typescript
-const transport = new StreamableHTTPClientTransport(
-  new URL('https://mcp-server.example.com'),
-  {
+const transport = new StreamableHTTPClientTransport(new URL('https://mcp-server.example.com'), {
     fetch: createFetchWithProxy({
-      httpProxy: 'http://username:password@proxy.example.com:8080',
-      httpsProxy: 'https://username:password@proxy.example.com:8443'
+        httpProxy: 'http://username:password@proxy.example.com:8080',
+        httpsProxy: 'https://username:password@proxy.example.com:8443'
     })
-  }
-);
+});
 ```
 
 Or via environment variables:
@@ -97,18 +88,16 @@ HTTPS_PROXY=https://username:password@proxy.example.com:8443
 The `NO_PROXY` setting (or `noProxy` option) specifies hosts that should bypass the proxy:
 
 ```typescript
-const transport = new StreamableHTTPClientTransport(
-  new URL('https://mcp-server.example.com'),
-  {
+const transport = new StreamableHTTPClientTransport(new URL('https://mcp-server.example.com'), {
     fetch: createFetchWithProxy({
-      httpProxy: 'http://proxy.example.com:8080',
-      noProxy: 'localhost,127.0.0.1,.local,.internal'
+        httpProxy: 'http://proxy.example.com:8080',
+        noProxy: 'localhost,127.0.0.1,.local,.internal'
     })
-  }
-);
+});
 ```
 
 Supported patterns in `NO_PROXY`:
+
 - Exact hostname: `example.com`
 - Domain suffix: `.example.com` (matches `sub.example.com`)
 - IP address: `127.0.0.1`
@@ -124,12 +113,9 @@ Proxy configuration works with both `StreamableHTTPClientTransport` and `SSEClie
 import { SSEClientTransport } from '@modelcontextprotocol/sdk/client/sse';
 import { createFetchWithProxy, getProxyConfigFromEnv } from '@modelcontextprotocol/sdk/client/proxy';
 
-const transport = new SSEClientTransport(
-  new URL('https://mcp-server.example.com'),
-  {
+const transport = new SSEClientTransport(new URL('https://mcp-server.example.com'), {
     fetch: createFetchWithProxy(getProxyConfigFromEnv())
-  }
-);
+});
 ```
 
 ## Environment Variables
@@ -163,8 +149,8 @@ npm install undici
 
 ```typescript
 const response = await fetch('https://example.com', {
-  // @ts-expect-error - dispatcher is undici-specific
-  dispatcher: new ProxyAgent('http://proxy.example.com:8080')
+    // @ts-expect-error - dispatcher is undici-specific
+    dispatcher: new ProxyAgent('http://proxy.example.com:8080')
 });
 ```
 
@@ -179,6 +165,7 @@ If you encounter certificate errors with HTTPS proxies, you may need to configur
 Creates a fetch function configured to use the specified proxy settings.
 
 **Parameters:**
+
 - `config.httpProxy` - HTTP proxy URL (optional)
 - `config.httpsProxy` - HTTPS proxy URL (optional)
 - `config.noProxy` - Comma-separated list of hosts to bypass (optional)
@@ -195,8 +182,8 @@ Reads proxy configuration from standard environment variables.
 
 ```typescript
 interface ProxyConfig {
-  httpProxy?: string;
-  httpsProxy?: string;
-  noProxy?: string;
+    httpProxy?: string;
+    httpsProxy?: string;
+    noProxy?: string;
 }
 ```

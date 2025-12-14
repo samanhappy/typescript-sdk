@@ -45,12 +45,9 @@ For environments that require HTTP/HTTPS proxies, the SDK provides proxy configu
 ```typescript
 import { createFetchWithProxy, getProxyConfigFromEnv } from '@modelcontextprotocol/sdk/client/proxy';
 
-const transport = new StreamableHTTPClientTransport(
-  new URL('https://mcp-server.example.com'),
-  {
+const transport = new StreamableHTTPClientTransport(new URL('https://mcp-server.example.com'), {
     fetch: createFetchWithProxy(getProxyConfigFromEnv())
-  }
-);
+});
 ```
 
 See [proxy.md](proxy.md) for detailed proxy configuration guide.
